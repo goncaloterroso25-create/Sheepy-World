@@ -1,20 +1,24 @@
 # Sheepy World: A Cheeky Tale
 
-Sheepy World: A Cheeky Tale is a cozy pixel-art exploration game I originally created as a one-year anniversary gift for my girlfriend.
+**A cozy pixel-art exploration game originally created as a one-year anniversary gift for my girlfriend.**
 
-Built around memory, exploration, environmental storytelling, and playful interactions, the project evolved into a complete game featuring multiple regions, dialogue, memory restoration, cats, controller support, original music, and a post-game Together Mode. The player character is based on my girlfriend; I appear as another character. The original private game drew on shared memories and personal experiences without pretending its personal origin was fictional.
+Built around memory, exploration, environmental storytelling, and small playful interactions, **Sheepy World** grew from a personal gift into a complete game with multiple connected regions, memory restoration, dialogue, cats, controller support, original music and sound design, and a post-game **Together Mode**.
 
-> **This repository is a privacy-safe public portfolio edition of the original game.** Personal photographs, videos, private messages, identifying details, and selected relationship-specific content have been removed, generalized, or replaced with clearly fictional placeholders. It is intentionally not byte-identical to the private anniversary release.
+> **This repository is a privacy-safe public portfolio edition.** Personal photographs, videos, private messages, identifying details, and selected relationship-specific content from the original anniversary version have been removed, generalized, or replaced with fictional placeholders.
 
-## Project Overview
+### Play the game
 
-The game follows a protagonist through a connected, code-authored pixel world. Environmental clues gradually turn incomplete scrapbook entries into restored memories, opening a final journey and a post-game mode built around close paired movement and small shared activities.
+**[⬇ Download for Windows](https://github.com/goncaloterroso25-create/Sheepy-World/releases/download/SheepyWorldV1/Sheepy-World-Public-Setup.exe)**
 
-The canonical presentation is a 640×360 logical canvas. Phaser renders procedural pixel art and authored UI at integer-friendly coordinates, while nearest-neighbour scaling keeps the image crisp at larger window sizes.
+[View the release](https://github.com/goncaloterroso25-create/Sheepy-World/releases/tag/SheepyWorldV1) · [Portfolio](https://goncaloterroso.com) · [Architecture](docs/ARCHITECTURE.md)
+
+> The Windows build is currently unsigned, so Windows SmartScreen may display an **Unknown Publisher** warning. No Node.js, Rust, Git, or other development tools are required to play.
+
+---
 
 ## Screenshots
 
-All images below are captured from this sanitized edition. No personal photograph, private letter, exact private date, or private media appears in them.
+All screenshots below come from the sanitized public edition.
 
 | | |
 | --- | --- |
@@ -23,108 +27,117 @@ All images below are captured from this sanitized edition. No personal photograp
 | ![Mentalist scene](docs/screenshots/05-mentalist.png) | ![Scrapbook UI](docs/screenshots/06-scrapbook.png) |
 | ![Cat interaction](docs/screenshots/07-cats.png) | ![Together Mode](docs/screenshots/08-together.png) |
 
+## Highlights
+
+- 🌿 **A connected cozy world** spanning Autumn Park, River Town, Vila Meow, Snow, Porto, an old-world festival, a Mentalist-inspired case, and Final Park.
+- 📖 **Memory restoration** built around exploration, clues, scrapbook fragments, and environmental storytelling rather than a traditional quest list.
+- 💬 **Dialogue and choices** with repeatable interactions, character moments, and scene-specific events.
+- 🐈 **Tobias, Teemi, and Chicho**, each with their own sprites, movement, interactions, and behaviors.
+- 🫶 **Together Mode**, a post-game companion experience with hand-holding, synchronized movement, couch/TV moments, sleeping, playful interactions, and small idle details.
+- 🎧 **Original music and bespoke sound design**, alongside carefully curated ambience and sound effects.
+- 🎮 **Keyboard and controller support**, save persistence, fullscreen support, and a native Windows build through Tauri.
+
 ## Origin
 
-The original Sheepy World was designed as a one-year anniversary game for my girlfriend. Its protagonist, developer character, playful tone, and structure around remembering all come from that origin. This edition keeps that truth because it is central to the work, while separating the public technical showcase from the couple's private archive.
+The original **Sheepy World** was designed as a one-year anniversary game for my girlfriend. The protagonist is based on her, while I appear as another character in the world.
 
-## Design Philosophy
+Shared memories and personal experiences shaped the game's tone and structure, but this public version deliberately separates the project from the parts of our relationship that should remain private.
 
-- Keep discovery diegetic: the player notices places, conversations, objects, and changes in the world instead of following a quest list.
-- Let ordinary interactions matter alongside larger set pieces.
-- Build small authored systems with explicit data rather than one oversized scene.
-- Preserve readable pixel silhouettes, limited palettes, integer positioning, and nearest-neighbour presentation.
-- Treat privacy as a content boundary, not a reason to erase the project's identity.
+That personal origin is still important to the project: it is why the game revolves around remembering, noticing small details, revisiting places, and turning everyday moments into meaningful interactions.
 
-## Core Features
+## Gameplay & Systems
 
-- A connected multi-region world spanning Autumn Park, River Town, Vila Meow, Home, Snow, Porto, an old-world festival, a Mentalist-inspired case, and Final Park.
-- Four-state memory progression: `UNKNOWN` → `DISCOVERING` → `RESONATING` → `RESTORED`.
-- Dialogue graphs with portraits, choices, repeatable and one-shot interactions, and scene events.
-- A tactile scrapbook, inventory bag, compact HUD, pause/settings paper, and controller-aware prompts.
-- Tobias, Teemi, and Chicho with distinct roaming, directional animation, interaction, and carrying behavior.
-- Post-game Together Mode with paired locomotion, hand-holding, synchronized sprinting, couch/TV, sleeping, COF, idle affection, side-switch bump, and playful micro-events.
-- Original soundtrack composed and produced by Gonçalo Terroso, with bespoke Scrapbook, Bag/inventory, door, and wider interaction/UI sound design plus curated ambience and SFX integration.
-- Keyboard and controller input, versioned saves, original score playback, and a Tauri desktop wrapper.
+### Memory restoration
 
-## World & Exploration
+Exploration gradually reveals clues and fragments that move memories through different stages until they are restored. The Scrapbook acts as the player's record of that progress and provides subtle guidance without turning the experience into a checklist.
 
-`ParkScene` owns the active world and composes region modules rather than embedding the full game in one scene file. Region definitions separate layout, art, surface queries, collision, interactions, local audio intent, and story hooks. The result is a large world that remains inspectable as focused TypeScript modules.
+The public edition keeps the full progression system while generalizing private dates, event names, and identifying details.
 
-Porto remains a public setting. Fictional Vila Meow remains intact. Residential mappings, exact private homes, and identifying location details are not included.
+### Scrapbook & UI
 
-## Memory Restoration System
+The interface uses a tactile paper-and-ink visual language across the Scrapbook, Bag, HUD, dialogue, pause menu, and settings.
 
-Memories are data definitions with stable IDs, fragment IDs, discovery copy, restored copy, thresholds, regions, and next-step hints. `GameStateStore` is the only mutation boundary for collected fragments, restored memories, inventory, encounters, cats, settings, and story flags.
+For this portfolio edition, the gallery uses four fictional illustrated memory cards so the media systems remain fully functional without exposing any private photographs.
 
-The public edition retains legacy internal IDs where they protect behavior or save semantics, but player-facing dates and event labels are generalized. The Final Gate still depends on restored anchor memories and a two-part keepsake; its public labels no longer expose the private anniversary date.
+### Dialogue
 
-## Scrapbook & UI
+Dialogue supports character portraits, branching choices, one-off moments, repeatable interactions, and story events.
 
-The scrapbook visualizes discovery state, clue fragments, restoration, living annotations, and late-game guidance. UI modules share paper, fabric, ink, controller-glyph, and pixel-font primitives. Blocking overlays report their state through the game event bus so movement and audio ownership stay coordinated.
+Ordinary humor and playful couple interactions remain intact. Private conversations, sensitive details, and the original anniversary letter were intentionally omitted or replaced with transparent public-edition notices.
 
-The gallery uses four original fictional cards made for this repository: an autumn bench, an empty evening stage, a snow-sheep scene, and a sleeping cat. They demonstrate image loading, galleries, polaroid presentation, and the timed couch callback without reproducing any private photograph.
+### Together Mode
 
-## Dialogue System
+After completing the game, **Together Mode** adds a companion character and a set of paired interactions across the world.
 
-Dialogue is defined as typed node graphs with speakers, lines, optional portraits, choices, completion events, and world-focus metadata. The public edition preserves humor, ordinary couple exchanges, character cameos, and the Mentalist case. Private conversations, sensitive facts, and the anniversary letter are not included.
+It includes hand-holding, close movement, synchronized sprinting, couch and TV moments, sleeping, COF, idle affection, playful micro-events, and a **“Switch sides?” → BUMP** interaction.
 
-The final-letter UI remains operational and displays an explicit omission notice rather than invented substitute history.
+The system itself is preserved in the public edition; only a small number of relationship-specific details were generalized for privacy.
 
-## Together Mode
+### Cats
 
-Together Mode unlocks after completion and adds a scene-local companion owner. `TogetherMotion` handles safe following, close-pair offsets, hand joins, sprint synchronization, and region re-entry. `TogetherState` owns elapsed-time micro-events and activity transitions. `TogetherWorld` binds those systems to authored interaction anchors.
+Tobias, Teemi, and Chicho keep their names and approved in-game designs.
 
-For this public edition, the contextual prompt is **“Switch sides?”**. Activation still turns the pair back-to-back, performs the tiny contact movement, displays **BUMP**, and preserves the original cooldown/state behavior. The pinch system remains, but its private physical-detail callback was replaced with the generic **“Got your nose!!!”** line.
+They can roam, animate directionally, react to the player, and take part in region-specific interactions. No real reference photographs of the cats are included in this repository.
 
-## Cat System
+## 🎧 Sound Design & Original Music
 
-Tobias, Teemi, and Chicho keep their names and approved game sprites. Cat behavior is divided between data, `CatActor`, `CatMotion`, region-specific composition, final-journey following, and save-backed ownership state. No real reference photograph of any cat is included.
+Audio was a hands-on part of the game's creative direction.
 
-## Sound Design & Original Music
+**I composed and produced the original Sheepy World soundtrack**, and also created the bespoke sound design for several key interactions, including:
 
-Audio was a hands-on part of the project's creative direction. **Gonçalo Terroso composed and produced the original Sheepy World soundtrack.** He also created and designed the custom Scrapbook sounds, Bag/inventory sounds, door sounds, and wider interaction/UI sound work that helped give the game its tactile character.
+- Scrapbook sounds
+- Bag / inventory sounds
+- Door sounds
+- Additional UI and interaction feedback
 
-For the remaining sound effects and environmental ambience used by the original game, Gonçalo curated, selected, and integrated the material to fit each scene and interaction. This curation and audio direction should not be read as a claim that he personally recorded or composed every ambience or remaining SFX.
+For the remaining sound effects and environmental ambience used by the original game, I handled the **curation, selection, integration, and overall audio direction** so that the sound palette matched each scene and interaction.
 
-The authored audio palette is connected to the runtime through `AudioSystem`: channel mixing, settings, emitter ownership, focus/unlock recovery, spatial intent, and modal ducking coordinate how music, ambience, UI feedback, and interactions behave in play.
+That distinction is intentional: I did not personally record or compose every ambience or remaining SFX, but I was responsible for choosing how that wider audio palette fit the game.
 
-This privacy-safe repository intentionally distributes only the approved public audio: `public/assets/audio/music/sheepy-world-theme.mp3`, the original instrumental score, with its ID3 metadata stripped. The original private version used a broader audio set; some of that audio is deliberately not distributed here, and optional excluded sounds resolve silently without making the public build dependent on private assets.
+The public repository distributes only the approved original instrumental theme. Some audio from the private anniversary version is intentionally excluded for privacy and source-asset reasons.
 
-## Controller / Input
+## Public Portfolio Edition
 
-Controls are centralized and presented through keyboard or controller-aware glyphs. The game supports movement, sprinting, interactions, dialogue choices, Bag, Scrapbook, pause/settings, Together actions, and context-sensitive back behavior without scattering key labels through scene code.
+This GitHub version is intentionally different from the original private anniversary release.
 
-## Save Architecture
+For privacy:
 
-`SaveRepository` persists a schema-versioned document to browser storage. `sanitizeSave` validates and migrates supported legacy versions before state reaches the game. `GameStateStore` exposes focused mutations and subscriptions, while transient movement and Together runtime state remain out of the save payload.
+- personal photographs and videos were removed and replaced with fictional illustrated placeholders;
+- the original anniversary letter and other private messages were omitted;
+- identifying names, exact private dates, selected locations, and relationship-specific details were generalized;
+- a small number of private dialogue lines and inside jokes were replaced with neutral public wording;
+- private voice material and other non-public audio assets are not distributed here.
 
-## Desktop Packaging
+The goal was to preserve the **game, its personality, and its systems** without turning a personal relationship into a public archive.
 
-Tauri 2 source and icons are included to demonstrate the Windows desktop wrapper. A prebuilt Windows installer is intended to be provided through GitHub Releases after local review; no release link is published here yet. The downloadable build is the same privacy-safe portfolio edition represented by this repository and contains no private anniversary media.
+## Design Approach
 
-The installer is not stored in the tracked source. You can still build the wrapper locally to inspect the desktop integration. The public installer uses Tauri's WebView2 download bootstrapper when WebView2 is not already available, rather than bundling the full offline WebView2 payload.
+A few principles guided the project:
 
-This portfolio build is not code-signed. Windows SmartScreen may therefore show an **Unknown Publisher** warning; review the release and its checksum, and do not weaken Windows security settings.
+- **Discovery over checklists** — progress should come from noticing places, conversations, objects, and changes in the world.
+- **Small interactions matter** — quiet character moments are as important as larger set pieces.
+- **Cozy but readable** — pixel art, UI, animation, and sound should feel warm without sacrificing clarity.
+- **Privacy by design** — the public edition demonstrates the project without exposing the private material it was originally built around.
 
-## Tech Stack
+## Tech
 
-Versions below are taken from the checked lockfiles in this edition.
-
-| Technology | Locked version | Role |
+| Technology | Version | Used for |
 | --- | ---: | --- |
-| Phaser | 3.90.0 | Game runtime, scenes, input, cameras, audio, tweens |
-| TypeScript | 5.9.3 | Typed gameplay, UI, data, and tests |
-| Vite | 7.3.6 | Development server and production web build |
-| Vitest | 3.2.7 | Unit, integration, content, and regression tests |
-| ESLint | 9.39.5 | Static analysis |
-| Tauri CLI | 2.11.4 | Desktop development and packaging |
-| Tauri crate | 2.11.5 | Rust desktop runtime |
+| Phaser | 3.90.0 | Game runtime, scenes, input, cameras, audio |
+| TypeScript | 5.9.3 | Gameplay, UI, data, and tooling |
+| Vite | 7.3.6 | Development and production builds |
+| Vitest | 3.2.7 | Automated testing |
+| Tauri | 2.11.x | Native Windows desktop wrapper |
 
-## Testing / QA
+The codebase is split into focused systems for world regions, interactions, dialogue, memories, UI, audio, saving, cats, and Together Mode.
 
-The suite covers movement timing, save migration, interactions, memory states, dialogue choices, art contracts, region composition, audio routing, cats, Together Mode, title flow, and completion. Public-specific tests lock the omission notice, placeholder-media allowlist, and Together wording.
+For a deeper technical breakdown, see **[ARCHITECTURE.md](docs/ARCHITECTURE.md)**.
 
-An additional repository scan checks for forbidden directories, installers, archives, videos, WAV masters, private media routes, local developer paths, obvious secret formats, the protagonist's private name, private callback wording, exact public-facing date tokens, and unexpected public assets.
+## Testing & Privacy QA
+
+The project includes automated coverage for gameplay systems such as movement, saves, interactions, memory progression, dialogue choices, cats, audio behavior, Together Mode, title flow, and completion.
+
+The public edition also includes dedicated privacy checks that help prevent private media, local machine paths, installers, secrets, and other excluded material from accidentally entering the repository.
 
 ```powershell
 npm run privacy
@@ -134,66 +147,57 @@ npm run lint
 npm run build
 ```
 
-## Public Portfolio Edition
+## Run from Source
 
-This version differs deliberately from the original private anniversary release:
+If you only want to play, use the **[Windows release](https://github.com/goncaloterroso25-create/Sheepy-World/releases/tag/SheepyWorldV1)** above.
 
-- Personal photographs and videos are absent; four fictional illustrated cards demonstrate the media systems.
-- The private anniversary letter and personal wish are replaced by explicit omission notices.
-- The protagonist's real name, identifying labels, exact private dates, selected locations, and event names are generalized.
-- Selected private dialogue and inside-joke details are replaced with transparent or neutral public copy.
-- Together Mode keeps its behavior while the side-switch prompt and one pinch callback use public-safe wording.
-- The original private version used a broader audio set. This edition distributes only the approved public-safe original instrumental; other original-version audio remains intentionally outside this repository.
-- The original private release, installer, build history, and source references remain separate.
+For development or source review:
 
-Placeholders are not presented as original relationship content. They exist only to keep the public build runnable and the underlying systems reviewable.
-
-## Development Approach
-
-Concepted, designed, creatively directed, iterated, tested, and manually reviewed by Gonçalo Terroso. His direct creative authorship also includes the original music, bespoke sound design, and curation and integration of the wider audio palette.
-
-Developed through an AI-assisted workflow combining hands-on creative direction, systems design, iterative implementation, runtime testing, and manual visual QA. AI-assisted implementation was used as a development tool; creative and release decisions remained actively directed and reviewed.
-
-See [Architecture](docs/ARCHITECTURE.md) for the privacy-safe system map.
-
-## Run Locally
-
-For visitors who only want to play, the reviewed prebuilt Windows installer is intended for GitHub Releases and does not require Node.js, npm, Rust, Cargo, Visual Studio, Git, Tauri, or a terminal. The local-source workflow below remains available for reviewers and developers.
-
-Prerequisites: Node.js `^20.19.0` or `>=22.12.0`.
+**Prerequisite:** Node.js `^20.19.0` or `>=22.12.0`
 
 ```powershell
 npm install
 npm run dev
 ```
 
-Open the local URL printed by Vite. The project has no dependency on the private repository, `references/`, local secret files, or personal media.
+Then open the local URL printed by Vite.
 
-## Build
-
-Web build:
+### Production build
 
 ```powershell
 npm run build
 ```
 
-Desktop development/build additionally requires Rust and the platform prerequisites for Tauri 2:
+### Desktop build
+
+Building the Tauri desktop wrapper additionally requires Rust and the normal platform prerequisites for Tauri 2:
 
 ```powershell
 npm run desktop:dev
 npm run desktop:build
 ```
 
-Compiled application binaries and installers remain outside this repository's tracked source. After review, the prebuilt Windows installer is intended to be distributed separately through GitHub Releases.
+Compiled installers are distributed through **GitHub Releases**, not stored in the tracked source repository.
+
+## Development Approach
+
+Concepted, designed, creatively directed, iterated, tested, and manually reviewed by **Gonçalo Terroso**.
+
+My direct creative work also includes the original music, bespoke sound design, and curation/integration of the wider audio palette.
+
+The project was developed through an **AI-assisted workflow** combining hands-on creative direction, systems design, iterative implementation, runtime testing, and manual visual QA. AI-assisted implementation was used as a development tool; creative and release decisions remained actively directed and reviewed.
 
 ## Project Status
 
-The original private game and Windows release are complete and release-frozen. This repository is a separate portfolio-safe edition prepared for source review and local builds. It is not a redesign for a future commercial project.
+The original private anniversary game and its Windows release are complete.
 
-## Author / Portfolio
+This repository is the separate, privacy-safe **public portfolio edition**, with its own downloadable Windows build.
 
-**Gonçalo Terroso** — concept, design, creative direction, development, and QA.
+## Author
 
-Portfolio: [goncaloterroso.com](https://goncaloterroso.com)
+**Gonçalo Terroso**  
+Concept · Game Design · Creative Direction · Development · Sound Design · Original Music · QA
+
+🌐 [goncaloterroso.com](https://goncaloterroso.com)
 
 © 2026 Gonçalo Terroso. All rights reserved. No open-source license is granted by the presence of this source portfolio.
