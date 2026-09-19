@@ -1,0 +1,45 @@
+# Private source material and local review notes: never commit or publish.
+/references/
+/private/
+/private-assets/
+/raw-assets/
+/PUBLIC-REPO-AUDIT.md
+
+# Dependencies, builds, packaging, and generated proof output.
+/node_modules/
+/dist/
+/coverage/
+/.vite/
+/artifacts/
+/release/
+/proof/
+/playwright-report/
+/test-results/
+/src-tauri/target/
+*.exe
+*.msi
+*.dll
+*.map
+*.wav
+*.mp4
+*.webm
+*.zip
+
+# Local configuration, caches, and temporary exports.
+.env
+.env.*
+!.env.example
+/tmp/
+/temp/
+/exports/
+/scripts/__pycache__/
+*.local
+*.log
+
+# Editors and operating systems.
+.DS_Store
+Thumbs.db
+Desktop.ini
+.idea/
+.vscode/
+*.swp

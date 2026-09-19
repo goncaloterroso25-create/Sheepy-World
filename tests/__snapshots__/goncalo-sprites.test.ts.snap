@@ -1,0 +1,3 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Goncalo normal sprite family > preserves back frames and all pixels below the corrected hair framing 1`] = `"a0acc864"`;
